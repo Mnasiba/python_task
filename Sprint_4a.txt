@@ -1,0 +1,63 @@
+﻿Sprint_4a_task
+1) İstifadəçidən iki rəqəm və bir əməliyyat (toplama, çıxma, vurma, bölmə) daxil etməsini tələb edən funksiya yazın. Mümkün xətaları (ValueError, TypeError və s.) idarə edin və müvafiq mesajlar çıxarın. Sonda da "Hesablama bitdi" mesajı çap olunsun.
+def hesabla():
+    try:
+        a = float(input("Birinci rəqəmi daxil edin: "))
+        b = float(input("İkinci rəqəmi daxil edin: "))
+        emeliyyat = input("Əməliyyatı daxil edin (toplama, çıxma, vurma, bölmə): ")
+
+        if emeliyyat == "toplama":
+            print("Nəticə:", a + b)
+        elif emeliyyat == "çıxma":
+            print("Nəticə:", a - b)
+        elif emeliyyat == "vurma":
+            print("Nəticə:", a * b)
+        elif emeliyyat == "bölmə":
+            if b == 0:
+                print("0-a bölmək olmaz!")
+            else:
+                print("Nəticə:", a / b)
+        else:
+            print("Yanlış əməliyyat daxil etdiniz.")
+    except ValueError:
+        print("Rəqəm daxil edilməyib.")
+    except TypeError:
+        print("Tip xətası baş verdi.")
+    finally:
+        print("Hesablama bitdi")
+
+2) 1-dən 50-yə qədər olan rəqəmlərdən yalnız 11ə qalıqsız bölünənlərini list olaraq qaytarın.
+bolunenler = [i for i in range(1, 51) if i % 11 == 0]
+print(bolunenler)  # [11, 22, 33, 44]
+
+3) Verilmiş sözlər siyahısından (["kitab", "qələm", "defter", "silgi"]) hər sözün ilk hərfini list olaraq qaytarın.
+sozler = ["kitab", "qələm", "defter", "silgi"]
+ilk_herfler = [soz[0] for soz in sozler]
+print(ilk_herfler)  # ['k', 'q', 'd', 's']
+
+4) Şəhər adları (["Bakı", "Gəncə", "Sumqayıt"]) və kodları ([12, 22, 18]) siyahılarından {şəhər: kod} dictionary olaraq qaytarın.
+seherler = ["Bakı", "Gəncə", "Sumqayıt"]
+kodlar = [12, 22, 18]
+seher_kod = dict(zip(seherler, kodlar))
+print(seher_kod)  # {'Bakı': 12, 'Gəncə': 22, 'Sumqayıt': 18}
+
+5) Kilometri milə çevirən (mil = km * 0.621371) lambda funksiyası yazın və 5 fərqli dəyər üçün yoxlayın.
+km_to_mil = lambda km: km * 0.621371
+print([km_to_mil(km) for km in [1, 5, 10, 50, 100]])
+
+6) [100, 200, 300, 400] qiymətlərinə 18% vergi əlavə etmək üçün map() və lambda istifadə edin.
+qiymetler = [100, 200, 300, 400]
+vergi_daxil = list(map(lambda x: x * 1.18, qiymetler))
+print(vergi_daxil)
+
+7) [3, 7, 12] və [2, 4, 6] siyahılarının elementlərini ikiqat artırmaq və sonra cəmləmək üçün map() istifadə edin.
+a = [3, 7, 12]
+b = [2, 4, 6]
+cem = list(map(lambda x, y: x*2 + y*2, a, b))
+print(cem)  # [10, 22, 36]
+
+8) [150, 80, 220, 45] siyahısından ən kiçik qiyməti reduce() ilə tapın.
+from functools import reduce
+reqemler = [150, 80, 220, 45]
+minimum = reduce(lambda x, y: x if x < y else y, reqemler)
+print(minimum)  # 45
